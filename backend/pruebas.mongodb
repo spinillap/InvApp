@@ -1,0 +1,8 @@
+use('productos')
+
+db.productos.insert({
+    "numpart": "20 ",
+    "descripcion": "Washer",
+    "cantidad": "20",
+    "precio": 5,
+});

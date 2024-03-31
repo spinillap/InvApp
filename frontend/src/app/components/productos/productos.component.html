@@ -1,0 +1,64 @@
+
+<div class="container">
+    <div class="w3-container w3-red">
+        <p>INV App maneja tus inventarios, mientras tu manejas tu negocio</p>
+      </div>
+    <div class="row">
+        <div class="col s20">
+            <div class="card">
+                <div class="card-content">
+                    <form #productoForm="ngForm" (ngSubmit)="agregarproducto(productoForm)">
+                      <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="productoService.selectedproducto._id">   
+                        <div class="row">
+                            <div class="input-field col-s12">
+                                <input type="text" name="numpart" #numpart="ngModel" [(ngModel)]="productoService.selectedproducto.numpart"
+                                  placeholder="Ingrese numero de parte">
+                            </div>
+                            <div class="input-field col-s12">
+                                <input type="text" name="descripcion" #descripcion="ngModel" [(ngModel)]="productoService.selectedproducto.descripcion"
+                                  placeholder="Ingrese descripcion">
+                            </div>
+                            <div class="input-field col-s12">
+                                <input type="number" name="cantidad" #cantidad="ngModel" [(ngModel)]="productoService.selectedproducto.cantidad"
+                                  placeholder="Ingrese cantidad">
+                            </div>
+                            <div class="input-field col-s12">
+                                <input type="text" name="precio" #precio="ngModel" [(ngModel)]="productoService.selectedproducto.precio"
+                                  placeholder="Ingrese precio">
+                            </div>
+                            <div class="card-action">
+                                 <div class="input-field col s15">
+                                    <button class="btn" >Guardar</button>   
+                                    <button class="btn" style="margin-left: 5px" (click)="resetForm(productoForm)">Limpiar</button>         
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col s7">
+            <table>
+                <thead>
+                    <th>NumParte</th>
+                    <th>Descripcion</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let producto of productoService.productos">
+                        <td>{{producto.numpart}}</td>
+                        <td>{{producto.descripcion}}</td>
+                        <td>{{producto.cantidad}}</td>
+                        <td>{{producto.precio}}</td>
+                        <td>
+                            <a (click)="modificarproducto(producto)"> 
+                                <i class="material-icons">edit</i>
+                            </a>
+                            <a (click)="borrarproducto(producto._id)">
+                                <i class="material-icons">delete</i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
